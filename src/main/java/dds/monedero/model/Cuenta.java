@@ -54,17 +54,17 @@ public class Cuenta {
     new Movimiento(LocalDate.now(), cuanto, false).agregateA(this);
   }
 
-  public void agregarMovimiento(LocalDate fecha, double cuanto, boolean esDeposito) {
-    Movimiento movimiento = new Movimiento(fecha, cuanto, esDeposito);
+  public void agregarMovimiento(Movimiento movimiento) {
+    //Movimiento movimiento = new Movimiento(fecha, cuanto, esDeposito);
     movimientos.add(movimiento);
-  }
+  } //CODE SMELL: LONG PARAMETER LIST. No necesita los 3 parámetros, sólo el objeto
 
   public double getMontoExtraidoA(LocalDate fecha) {
     return getMovimientos().stream()
         .filter(movimiento -> movimiento.fueExtraido(fecha))
         .mapToDouble(Movimiento::getMonto)
         .sum();
-  } //CODE SMELL: FEATURE ENVY. Es responsabilidad del monto.
+  } //CODE SMELL: FEATURE ENVY. Es responsabilidad del movimiento.
     //CODE SMELL: DUPLICATED CODE.
 
   public List<Movimiento> getMovimientos() {
