@@ -45,7 +45,7 @@ public class Movimiento {
 
   public void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
-    cuenta.agregarMovimiento(fecha, monto, esDeposito);
+    cuenta.agregarMovimiento(this);
   }
 
   public double calcularValor(Cuenta cuenta) {
@@ -56,7 +56,5 @@ public class Movimiento {
     }
   }
   
-  public boolean fueExtraidoEn(LocalDate fecha) {
-	  return !this.isDeposito() && this.getFecha().equals(fecha);
-  }
+  //CODE SMELL: TYPE TEST. Se puede reemplazar todas las validaciones aplicando herencia y polimorfismo
 }
